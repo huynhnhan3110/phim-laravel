@@ -1,3 +1,3 @@
-[First](./screenshots/first.PNG)
-[Third](./screenshots/third.PNG)
-[Second](./screenshots/second.PNG)
+[First](./screenshots/first.png)
+[Third](./screenshots/third.png)
+[Second](./screenshots/second.png)
