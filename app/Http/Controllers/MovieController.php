@@ -116,6 +116,9 @@ class MovieController extends Controller
       $path = 'uploads/movie/';
 
       if($get_image) {
+        if(!empty($movie)) {
+          unlink('uploads/movie/'.$movie->image);
+        }
         $get_name_image = $get_image->getClientOriginalName(); // hinhanh1.jpg
         $file_name = current(explode('.',$get_name_image)); //hinhanh1
         $file_name_created = $file_name.rand(0,9999).'.'.$get_image->getClientOriginalExtension(); // hinhanh19999.jpg

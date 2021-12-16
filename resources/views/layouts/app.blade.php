@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token-cate" content="{{ csrf_token() }}">
 
     <title>Trang quản trị</title>
 
@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -88,6 +88,7 @@
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script type="text/javascript">
  
     function ChangeToSlug()
@@ -123,6 +124,30 @@
             document.getElementById('convert_slug').value = slug;
         }
 
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $( "#sortable" ).sortable({
+                placeholder: "ui-state-highlight",
+                update: function(event, ui) {
+                    let arr_id = [];
+                    $('#sortable tr').each(function() {
+                        arr_id.push($(this).attr('id'));
+                    });
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token-cate"]').attr('content')
+                        },
+                        url: "{{route('resorting')}}",
+                        method: "POST",
+                        data: {arr_id:arr_id},
+                        success: function(data) {
+                            alert('Sắp xếp thứ tự thành công');
+                        } 
+                    })
+                }
+            });
+        });
     </script>
 </body>
 </html>

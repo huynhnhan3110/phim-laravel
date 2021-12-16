@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
    <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-12" style="margin-top: 10px">
          <div class="card">
             <div class="card-header">
                @if(!isset($category))
@@ -60,9 +60,9 @@
                         <th scope="col">Action</th>
                      </tr>
                   </thead>
-                  <tbody>
+                  <tbody id='sortable'>
                      @foreach($categories as $key => $cate)
-                     <tr>
+                     <tr id='{{$cate->id}}'>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$cate['title']}}</td>
                         <td>{{$cate['description']}}</td>
