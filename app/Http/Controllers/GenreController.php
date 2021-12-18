@@ -13,7 +13,8 @@ class GenreController extends Controller
      */
    public function index()
     {
-        //
+       $genres = Genre::orderBy('sort','ASC')->get();
+       return view('admincp.genre.index',compact('genres'));
     }
 
     /**
@@ -23,8 +24,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        $genres = Genre::all();
-       return view('admincp.genre.form',compact('genres'));
+       return view('admincp.genre.form');
     }
 
     /**
@@ -67,9 +67,8 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-    $genre = Genre::find($id);
-       $genres = Genre::all();
-       return view('admincp.genre.form',compact('genres','genre'));
+        $genre = Genre::find($id);
+       return view('admincp.genre.form',compact('genre'));
     }
 
     /**
@@ -104,5 +103,15 @@ class GenreController extends Controller
     {
         Genre::find($id)->delete();
         return redirect()->back();
+    }
+
+    public function resorting(Request $request) {
+        $data = $request->all();
+        foreach($data['arr_id'] as $key => $id) {
+            $genre = Genre::find($id);
+            $genre->sort = $key;
+            $genre->save();
+        }
+
     }
 }

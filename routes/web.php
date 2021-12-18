@@ -31,7 +31,10 @@ Route::get('/tap-phim', [IndexController::class, 'episode'])->name('episode');
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::post('resorting', [CategoryController::class, 'resorting'])->name('resorting');
+Route::post('resorting/category-page', [CategoryController::class, 'resorting'])->name('resorting/category-page');
+Route::post('resorting/country-page', [CountryController::class, 'resorting'])->name('resorting/country-page');
+Route::post('resorting/genre-page', [GenreController::class, 'resorting'])->name('resorting/genre-page');
+
 Route::resource('category', CategoryController::class);
 Route::resource('episode', EpisodeController::class);
 Route::resource('genre', GenreController::class);

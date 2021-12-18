@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <!-- Styles -->
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -89,6 +90,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
  
     function ChangeToSlug()
@@ -127,6 +129,7 @@
     </script>
     <script type="text/javascript">
         $(function() {
+            
             $( "#sortable" ).sortable({
                 placeholder: "ui-state-highlight",
                 update: function(event, ui) {
@@ -134,11 +137,12 @@
                     $('#sortable tr').each(function() {
                         arr_id.push($(this).attr('id'));
                     });
+                    let page_location = $(".page_name").attr('id');
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token-cate"]').attr('content')
                         },
-                        url: "{{route('resorting')}}",
+                        url: "{{URL::to('/resorting')}}/"+page_location,
                         method: "POST",
                         data: {arr_id:arr_id},
                         success: function(data) {
@@ -148,6 +152,15 @@
                 }
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#datatables_category').DataTable();
+            $('#datatables_country').DataTable();
+            $('#datatables_genre').DataTable();
+            $('#datatables_movie').DataTable();
+        } );
     </script>
 </body>
 </html>

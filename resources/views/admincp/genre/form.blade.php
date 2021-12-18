@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container page_name" id="genre-page">
    <div class="row justify-content-center">
       <div class="col-md-12" style="margin-top: 10px">
          <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                @if(!isset($genre))
                Thêm thể loại
                @else
                Sửa thể loại
                @endif
+               <a href="{{route('genre.index')}}"  class="btn btn-sm btn-primary">Xem danh sách</a>
             </div>
             <div class="card-body">
                @if (session('status'))
@@ -38,56 +39,18 @@
                   {!! Form::label('textStatus', 'Status',[]) !!}
                   {!!  Form::select('status', ['1' => 'Hiện', '0' => 'Ẩn'], isset($genre) ? $genre->status : null, ['placeholder' => 'Chọn trạng thái...','class'=>'form-control']) !!}
                </div>
-               @if(!isset($genre))
-               {!! Form::submit('Thêm thể loại', ['class' => 'btn btn-primary']) !!}
-               @else
-               {!! Form::submit('Cập nhật thể loại', ['class' => 'btn btn-primary']) !!}
-               @endif
+               <center>
+                  @if(!isset($genre))
+                  {!! Form::submit('Thêm thể loại', ['class' => 'btn btn-primary']) !!}
+                  @else
+                  {!! Form::submit('Cập nhật thể loại', ['class' => 'btn btn-primary']) !!}
+                  @endif
+                   <a class="btn btn-secondary" href="{{route('genre.index')}}">Trở về danh sách</a>
+               </center>
                {!! Form::close() !!}
             </div>
          </div>
-         <div class="card">
-            <div class="card-header">Danh sách các thể loại</div>
-            <div class="card-body">
-               <table class="table">
-                  <thead>
-                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Slug</th>
-
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     @foreach($genres as $key => $gen)
-                     <tr>
-                        <th scope="row">{{$key+1}}</th>
-                        <td>{{$gen['title']}}</td>
-                        <td>{{$gen['description']}}</td>
-                        <td>{{$gen['slug']}}</td>
-
-                        <td>
-                           @if($gen['status'])
-                           Hiển thị
-                           @else
-                           Chưa hiển thị
-                           @endif
-                        </td>
-                        <td>
-                           {!! Form::open(['route' => ['genre.destroy',$gen['id']],'method'=>'DELETE','onsubmit'=> 'return confirm("Chắc chắn muốn xóa chứ ?")']) !!}
-                           {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
-                           {!! Form::close() !!}
-                           <a href="{{route('genre.edit',$gen['id'])}}" class="btn btn-secondary">Sửa</a>
-                        </td>
-                     </tr>
-                     @endforeach
-                  </tbody>
-               </table>
-            </div>
-         </div>
+         
       </div>
    </div>
 </div>

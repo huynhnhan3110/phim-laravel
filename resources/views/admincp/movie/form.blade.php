@@ -4,12 +4,13 @@
    <div class="row justify-content-center">
       <div class="col-md-12" style="margin-top: 10px">
          <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                @if(!isset($movie))
                Thêm phim
                @else
                Sửa phim
                @endif
+               <a href="{{route('movie.index')}}"  class="btn btn-sm btn-primary">Xem danh sách</a>
             </div>
             <div class="card-body">
                @if (session('status'))
@@ -65,63 +66,15 @@
                      <img width="150px" src="{{asset('uploads/movie/'.$movie['image'])}}">
                   @endif
                </div>
-               @if(!isset($movie))
-               {!! Form::submit('Thêm phim', ['class' => 'btn btn-primary']) !!}
-               @else
-               {!! Form::submit('Cập nhật phim', ['class' => 'btn btn-primary']) !!}
-               @endif
+               <center>
+                  @if(!isset($movie))
+                  {!! Form::submit('Thêm phim', ['class' => 'btn btn-primary']) !!}
+                  @else
+                  {!! Form::submit('Cập nhật phim', ['class' => 'btn btn-primary']) !!}
+                  @endif
+                   <a class="btn btn-secondary" href="{{route('movie.index')}}">Trở về danh sách</a>
+               </center>
                {!! Form::close() !!}
-            </div>
-         </div>
-         <div class="card">
-            <div class="card-header">Danh sách các phim</div>
-            <div class="card-body">
-               <table class="table">
-                  <thead>
-                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Slug</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Active/Inactive</th>
-                        <th scope="col">Action</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     @foreach($movies as $key => $mov)
-                     <tr>
-                        <th scope="row">{{$key+1}}</th>
-                        <td>{{$mov['title']}}</td>
-                        <td><img width="90%" src="{{asset('uploads/movie/'.$mov['image'])}}"></td>
-                        <td>{{$mov['description']}}</td>
-                        <td>{{$mov->slug}}</td>
-
-                        <td>
-                          {{$mov->category->title}}
-                        </td>
-                        <td>{{$mov->genre->title}}</td>
-                        <td>{{$mov->country->title}}</td>
-                        <td>
-                           @if($mov['status'])
-                           Active
-                           @else
-                           Inactive
-                           @endif
-                        </td>
-                        <td>
-                           {!! Form::open(['route' => ['movie.destroy',$mov['id']],'method'=>'DELETE','onsubmit'=> 'return confirm("Chắc chắn muốn xóa chứ ?")']) !!}
-                           {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
-                           {!! Form::close() !!}
-                           <a href="{{route('movie.edit',$mov['id'])}}" class="btn btn-secondary">Edit</a>
-                        </td>
-                     </tr>
-                     @endforeach
-                  </tbody>
-               </table>
             </div>
          </div>
       </div>

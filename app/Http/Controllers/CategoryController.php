@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+       $categories = Category::orderBy('sort','ASC')->get();
+       return view('admincp.category.index',compact('categories'));
     }
 
     /**
@@ -23,8 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('sort','ASC')->get();
-       return view('admincp.category.form',compact('categories'));
+       return view('admincp.category.form');
     }
 
     /**
@@ -67,9 +67,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-    $category = Category::find($id);
-       $categories = Category::orderBy('sort','ASC')->get();
-       return view('admincp.category.form',compact('categories','category'));
+        $category = Category::find($id);
+       return view('admincp.category.form',compact('category'));
     }
 
     /**
@@ -107,7 +106,6 @@ class CategoryController extends Controller
     }
     public function resorting(Request $request) {
         $data = $request->all();
-
         foreach($data['arr_id'] as $key => $id) {
             $category = Category::find($id);
             $category->sort = $key;

@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container page_name" id="country-page">
    <div class="row justify-content-center">
       <div class="col-md-12" style="margin-top: 10px">
          <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between align-items-center">
                @if(!isset($country))
                Thêm quốc gia
                @else
                Sửa quốc gia
                @endif
+               <a href="{{route('country.index')}}"  class="btn btn-sm btn-primary">Xem danh sách</a>
             </div>
             <div class="card-body">
                @if (session('status'))
@@ -38,53 +39,16 @@
                   {!! Form::label('textStatus', 'Status',[]) !!}
                   {!!  Form::select('status', ['1' => 'Hiện', '0' => 'Ẩn'], isset($country) ? $country->status : null, ['placeholder' => 'Chọn trạng thái...','class'=>'form-control']) !!}
                </div>
-               @if(!isset($country))
-               {!! Form::submit('Thêm quốc gia', ['class' => 'btn btn-primary']) !!}
-               @else
-               {!! Form::submit('Cập nhật quốc gia', ['class' => 'btn btn-primary']) !!}
-               @endif
-               {!! Form::close() !!}
-            </div>
-         </div>
-         <div class="card">
-            <div class="card-header">Danh sách các quốc gia</div>
-            <div class="card-body">
-               <table class="table">
-                  <thead>
-                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Slug</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     @foreach($countries as $key => $coty)
-                     <tr>
-                        <th scope="row">{{$key+1}}</th>
-                        <td>{{$coty['title']}}</td>
-                        <td>{{$coty['description']}}</td>
-                        <td>{{$coty['slug']}}</td>
+               <center>
+                  @if(!isset($country))
+                  {!! Form::submit('Thêm quốc gia', ['class' => 'btn btn-primary']) !!}
+                  @else
+                  {!! Form::submit('Cập nhật quốc gia', ['class' => 'btn btn-primary']) !!}
+                  @endif
+                   <a class="btn btn-secondary" href="{{route('country.index')}}">Trở về danh sách</a>
 
-                        <td>
-                           @if($coty['status'])
-                           Hiển thị
-                           @else
-                           Chưa hiển thị
-                           @endif
-                        </td>
-                        <td>
-                           {!! Form::open(['route' => ['country.destroy',$coty['id']],'method'=>'DELETE','onsubmit'=> 'return confirm("Chắc chắn muốn xóa chứ ?")']) !!}
-                           {!! Form::submit('Xóa', ['class' => 'btn btn-danger']) !!}
-                           {!! Form::close() !!}
-                           <a href="{{route('country.edit',$coty['id'])}}" class="btn btn-secondary">Sửa</a>
-                        </td>
-                     </tr>
-                     @endforeach
-                  </tbody>
-               </table>
+               </center>
+               {!! Form::close() !!}
             </div>
          </div>
       </div>
