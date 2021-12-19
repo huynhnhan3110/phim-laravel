@@ -18,6 +18,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Genre</th>
                         <th scope="col">Country</th>
+                        <th scope="col">Hot</th>
                         <th scope="col">Active/Inactive</th>
                         <th scope="col">Action</th>
                      </tr>
@@ -34,6 +35,13 @@
                         </td>
                         <td>{{$mov->genre->title}}</td>
                         <td>{{$mov->country->title}}</td>
+                        <td>
+                           @if($mov['phimhot'] == 1)
+                              Có
+                           @else
+                              Không
+                           @endif
+                        </td>
                         <td>
                            @if($mov['status'])
                            Active

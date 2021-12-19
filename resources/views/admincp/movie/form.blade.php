@@ -35,10 +35,7 @@
                   {!! Form::label('description', 'Description',[]) !!}
                   {!! Form::textarea('description',isset($movie) ? $movie->description : null, ['style'=>'resize:none','placeholder' => 'Nhập nội dung','class' => 'form-control','id' => 'description']) !!}
                </div>
-               <div class="form-group">
-                  {!! Form::label('status', 'Status',[]) !!}
-                  {!!  Form::select('status', ['1' => 'Hiện', '0' => 'Ẩn'], isset($movie) ? $movie->status : '', ['class'=>'form-control']) !!}
-               </div>
+
                <div class="form-group">
                   {!! Form::label('category', 'Category',[]) !!}
                   
@@ -65,6 +62,15 @@
                   @if(isset($movie))
                      <img width="150px" src="{{asset('uploads/movie/'.$movie['image'])}}">
                   @endif
+               </div>
+               <div class="form-group">
+                  {!! Form::label('hot', 'Phim Hot',[]) !!}
+                  {!!  Form::select('phimhot', ['0' => 'Không', '1' => 'Có'], isset($movie) ? $movie->phimhot : '', ['class'=>'form-control']) !!}
+               </div>
+
+               <div class="form-group">
+                  {!! Form::label('status', 'Status',[]) !!}
+                  {!!  Form::select('status', ['1' => 'Hiện', '0' => 'Ẩn'], isset($movie) ? $movie->status : '', ['class'=>'form-control']) !!}
                </div>
                <center>
                   @if(!isset($movie))

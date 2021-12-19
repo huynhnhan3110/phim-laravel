@@ -6,7 +6,7 @@
                   <div class="ajax"></div>
                </div>
             </div>
-            <div class="col-xs-12 carausel-sliderWidget">
+            {{-- <div class="col-xs-12 carausel-sliderWidget">
                <section id="halim-advanced-widget-4">
                   <div class="section-heading">
                      <a href="danhmuc.php" title="Phim Chiếu Rạp">
@@ -36,7 +36,32 @@
                   </div>
                </section>
                <div class="clearfix"></div>
-            </div>
+            </div> --}}
+            <div id="halim_related_movies-2xx" class="wrap-slider">
+                     <div class="section-bar clearfix">
+                        <h3 class="section-title"><span>PHIM HOT</span></h3>
+                     </div>
+                     <div id="halim_related_movies-2" class="owl-carousel owl-theme related-film">
+                        @foreach($phimhot as $key => $hot)
+                        <article class="thumb grid-item post-38498">
+                           <div class="halim-item">
+                              <a class="halim-thumb" href="chitiet.php" title="Đại Thánh Vô Song">
+                                 <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$hot->image)}}" alt="{{$hot->title}}" title="{{$hot->title}}"></figure>
+                                 <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
+                                 <div class="icon_overlay"></div>
+                                 <div class="halim-post-title-box">
+                                    <div class="halim-post-title ">
+                                       <p class="entry-title">{{$hot->title}}</p>
+                                       <p class="original_title">Monkey King: The One And Only</p>
+                                    </div>
+                                 </div>
+                              </a>
+                           </div>
+                        </article>
+                        @endforeach
+                     </div>
+                     
+                  </div>
             <main id="main-contents" class="col-xs-12 col-sm-12 col-md-8">
                @foreach($category_home as $key => $cate)
                <section id="halim-advanced-widget-2">
@@ -102,7 +127,7 @@
                                  </div>
                                  <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
                               </a>
-                              <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                              <div class="viewsCount" style="color:' #9d9d9d';">3.2K lượt xem</div>
                               <div style="float: left;">
                                  <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
                                  <span style="width: 0%"></span>
@@ -192,7 +217,7 @@
                                  </div>
                                  <p class="title">CHỊ MƯỜI BA: BA NGÀY SINH TỬ</p>
                               </a>
-                              <div class="viewsCount" style="color: #9d9d9d;">3.2K lượt xem</div>
+                              <div class="viewsCount" style="color:#9d9d9d">3.2K lượt xem</div>
                               <div style="float: left;">
                                  <span class="user-rate-image post-large-rate stars-large-vang" style="display: block;/* width: 100%; */">
                                  <span style="width: 0%"></span>
