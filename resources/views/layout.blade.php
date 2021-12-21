@@ -228,5 +228,12 @@
          var owl = $('#halim_related_movies-2');
          owl.owlCarousel({loop: true,margin: 4,autoplay: true,autoplayTimeout: 4000,autoplayHoverPause: true,nav: true,navText: ['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],responsiveClass: true,responsive: {0: {items:2},480: {items:3}, 600: {items:4},1000: {items: 6}}})});
       </script>
+      <script>
+         $('.pagination').removeClass('pagination').addClass('page-numbers');
+
+         $('.page-item').removeClass('page-item');
+         $('.page-link').removeClass('page-link').addClass('page-numbers');
+         $('.page-numbers li.active span').addClass('current');
+      </script>
    </body>
 </html>

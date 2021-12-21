@@ -16,7 +16,7 @@
                            <div class="halim-post-title-box">
                               <div class="halim-post-title ">
                                  <p class="entry-title">{{$hot->title}}</p>
-                                 <p class="original_title">Monkey King: The One And Only</p>
+                                 <p class="original_title">{{$hot->title_eng}}</p>
                               </div>
                            </div>
                         </a>
@@ -44,9 +44,7 @@
                      <h1 class="section-title"><span>{{$slug_category->title}}</span></h1>
                   </div>
                   <div class="halim_box">
-                     @foreach($category_movie as $key => $cate)
-
-                     @foreach($cate->movie as $key => $mov)
+                     @foreach($category_movies as $key => $mov)
                         <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-27021">
                            <div class="halim-item">
                               <a class="halim-thumb" href="chitiet.php" title="{{$mov->title}}">
@@ -56,26 +54,18 @@
                                  <div class="halim-post-title-box">
                                     <div class="halim-post-title ">
                                        <p class="entry-title">{{$mov->title}}</p>
-                                       <p class="original_title">The Mire Season 1</p>
+                                       <p class="original_title">{{$mov->title_eng}}</p>
                                     </div>
                                  </div>
                               </a>
                            </div>
                         </article>
                      @endforeach
-                     @endforeach
                   
                   </div>
                   <div class="clearfix"></div>
                   <div class="text-center">
-                     <ul class='page-numbers'>
-                        <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="">2</a></li>
-                        <li><a class="page-numbers" href="">3</a></li>
-                        <li><span class="page-numbers dots">&hellip;</span></li>
-                        <li><a class="page-numbers" href="">55</a></li>
-                        <li><a class="next page-numbers" href=""><i class="hl-down-open rotate-right"></i></a></li>
-                     </ul>
+                     {!! $category_movies->links("pagination::bootstrap-4")!!}
                   </div>
                </section>
             </main>

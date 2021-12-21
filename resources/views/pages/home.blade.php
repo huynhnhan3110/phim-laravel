@@ -52,7 +52,7 @@
                                  <div class="halim-post-title-box">
                                     <div class="halim-post-title ">
                                        <p class="entry-title">{{$hot->title}}</p>
-                                       <p class="original_title">Monkey King: The One And Only</p>
+                                       <p class="original_title">{{$hot->title_eng}}</p>
                                     </div>
                                  </div>
                               </a>
@@ -82,7 +82,7 @@
                               <div class="halim-post-title-box">
                                  <div class="halim-post-title ">
                                     <p class="entry-title">{{$mov->title}}</p>
-                                    <p class="original_title">My Roommate Is a Gumiho</p>
+                                    <p class="original_title">{{$mov->title_eng}}</p>
                                  </div>
                               </div>
                            </a>

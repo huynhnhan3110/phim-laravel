@@ -28,6 +28,10 @@
                   {!! Form::text('title',isset($movie) ? $movie->title : null, ['placeholder' => 'Nhập nội dung','class' => 'form-control','id' => 'slug','onkeyup'=>'ChangeToSlug()']) !!}
                </div>
                <div class="form-group">
+                  {!! Form::label('title_eng', 'Title English',[]) !!}
+                  {!! Form::text('title_eng',isset($movie) ? $movie->title_eng : null, ['placeholder' => 'Nhập nội dung','class' => 'form-control','id' => 'slug']) !!}
+               </div>
+               <div class="form-group">
                   {!! Form::label('slug', 'Slug',[]) !!}
                   {!! Form::text('slug',isset($movie) ? $movie->slug : null, ['placeholder' => 'Nhập nội dung','class' => 'form-control','id' => 'convert_slug']) !!}
                </div>

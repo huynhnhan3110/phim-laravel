@@ -13,6 +13,7 @@
                      <tr>
                         <th scope="col">#</th>
                         <th scope="col">Title</th>
+                        <th scope="col">Title English</th>
                         <th scope="col">Image</th>
                         <th scope="col">Slug</th>
                         <th scope="col">Category</th>
@@ -28,6 +29,7 @@
                      <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$mov['title']}}</td>
+                        <td>{{$mov['title_eng']}}</td>
                         <td><img width="90%" src="{{asset('uploads/movie/'.$mov['image'])}}"></td>
                         <td>{{$mov->slug}}</td>
                         <td>

@@ -33,10 +33,10 @@ class IndexController extends Controller
         $category = Category::orderBy('sort','ASC')->where('status',1)->get();
         $genre = Genre::orderBy('sort','ASC')->where('status',1)->get();
         $country = Country::orderBy('sort','ASC')->where('status',1)->get();
-
-        $category_movie = Category::with('movie')->where('slug',$slug)->where('status',1)->get();
         $slug_category = Category::where('slug',$slug)->first();
-        return view('pages.category',compact('category','genre','country','slug_category','category_movie','phimhot'));
+
+        $category_movies = Movie::where('category_id',$slug_category->id)->paginate(40);
+        return view('pages.category',compact('category','genre','country','slug_category','category_movies','phimhot'));
     }
     public function genre($slug)
     {
@@ -47,7 +47,8 @@ class IndexController extends Controller
         $country = Country::orderBy('sort','ASC')->where('status',1)->get();
         $slug_genre = Genre::where('slug',$slug)->first();
 
-        return view('pages.genre',compact('category','genre','country','slug_genre','phimhot'));
+        $genre_movies = Movie::where('genre_id',$slug_genre->id)->paginate(40);
+        return view('pages.genre',compact('category','genre','country','slug_genre','phimhot','genre_movies'));
     }
     public function country($slug)
     {
@@ -57,7 +58,8 @@ class IndexController extends Controller
         $country = Country::orderBy('sort','ASC')->where('status',1)->get();
         $slug_country = Country::where('slug',$slug)->first();
 
-        return view('pages.country',compact('category','genre','country','slug_country','phimhot'));
+        $country_movies = Movie::where('country_id',$slug_country->id)->paginate(40);
+        return view('pages.country',compact('category','genre','country','slug_country','phimhot','country_movies'));
     }
     public function movie()
     {
