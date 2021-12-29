@@ -48,6 +48,16 @@
                </div>
                <div class="form-group">
                   {!! Form::label('genre', 'Genre',[]) !!}
+                  <br>
+                 @foreach($genre as $key => $gen) 
+                  <div class="form-check form-check-inline">
+                     {!!  Form::checkbox('gen[]',$key, in_array($key,$thuocloai) ,['class'=>'form-check-input','id'=>'gen'.$key]) !!}
+                     {!! Form::label('gen'.$key,$gen,[]) !!}
+                  </div>
+                  @endforeach
+               </div>
+               <div class="form-group">
+                  {!! Form::label('genre', 'Genre',[]) !!}
                   
                   {!!  Form::select('genre_id', $genre,isset($movie) ? $movie->genre_id : '', ['class'=>'form-control']) !!}
                   

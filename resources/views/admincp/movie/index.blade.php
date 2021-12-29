@@ -35,7 +35,11 @@
                         <td>
                           {{$mov->category->title}}
                         </td>
-                        <td>{{$mov->genre->title}}</td>
+                        <td>
+                           @foreach($mov->thuocnhieutheloai as $key => $glist)
+                          <span class="badge badge-secondary">{{$glist->title}}</span>
+                          @endforeach
+                        </td>
                         <td>{{$mov->country->title}}</td>
                         <td>
                            @if($mov['phimhot'] == 1)

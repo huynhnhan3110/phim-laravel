@@ -45,7 +45,7 @@
                         @foreach($phimhot as $key => $hot)
                         <article class="thumb grid-item post-38498">
                            <div class="halim-item">
-                              <a class="halim-thumb" href="chitiet.php" title="Đại Thánh Vô Song">
+                              <a class="halim-thumb" href="{{route('movie',$hot->slug)}}" title="Đại Thánh Vô Song">
                                  <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$hot->image)}}" alt="{{$hot->title}}" title="{{$hot->title}}"></figure>
                                  <span class="status">HD</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                                  <div class="icon_overlay"></div>
@@ -75,7 +75,7 @@
                      @foreach($cate->movie->take(12) as $key => $mov)
                      <article class="col-md-3 col-sm-3 col-xs-6 thumb grid-item post-37606">
                         <div class="halim-item">
-                           <a class="halim-thumb" href="">
+                           <a class="halim-thumb" href="{{route('movie',$mov->slug)}}">
                               <figure><img class="lazy img-responsive" src="{{asset('uploads/movie/'.$mov->image)}}" alt="{{$mov->title}}" title="{{$mov->title}}"></figure>
                               <span class="status">TẬP 15</span><span class="episode"><i class="fa fa-play" aria-hidden="true"></i>Vietsub</span> 
                               <div class="icon_overlay"></div>

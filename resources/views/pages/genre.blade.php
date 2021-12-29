@@ -65,7 +65,7 @@
                   </div>
                   <div class="clearfix"></div>
                   <div class="text-center">
-                     {!! $category_movies->links("pagination::bootstrap-4")!!}
+                     {!! $genre_movies->links("pagination::bootstrap-4")!!}
                      
                   </div>
                </section>

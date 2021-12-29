@@ -7,6 +7,8 @@ use App\Models\Movie;
 use App\Models\Country;
 use App\Models\Category;
 use App\Models\Genre;
+use App\Models\ThuocLoai;
+
 class MovieController extends Controller
 {
     /**
@@ -16,7 +18,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::with('category','genre','country')->orderBy('id','DESC')->get();
+
+        $movies = Movie::with('category','genre','country','thuocnhieutheloai')->orderBy('id','DESC')->get();
          return view('admincp.movie.index',compact('movies'));
     }
 
@@ -42,6 +45,7 @@ class MovieController extends Controller
     public function store(Request $request)
     {
       $data = $request->all();
+      
       $movie = new Movie();
       $movie->title = $data['title'];
       $movie->title_eng = $data['title_eng'];
@@ -50,9 +54,13 @@ class MovieController extends Controller
       $movie->status = $data['status'];
       $movie->phimhot = $data['phimhot'];
       $movie->category_id = $data['category_id'];
-      $movie->genre_id = $data['genre_id'];
+      
+        foreach($data['gen'] as $key => $genDetail){
+            $movie->genre_id = $genDetail[0];
+      }
+      
+      
       $movie->country_id = $data['country_id'];
-
       $get_image = $request->file('image');
       $path = 'uploads/movie/';
 
@@ -65,6 +73,7 @@ class MovieController extends Controller
       }
 
       $movie->save();
+      $movie->thuocnhieutheloai()->attach($data['gen']);
       return redirect()->back();
     }
 
@@ -90,8 +99,9 @@ class MovieController extends Controller
       $movie = Movie::find($id);
       $category = Category::pluck('title','id');
       $genre = Genre::pluck('title','id');
+      $thuocloai = ThuocLoai::where('movie_id',$id)->pluck('genre_id')->toArray();
       $country = Country::pluck('title','id');
-      return view('admincp.movie.form',compact('movie','category','genre','country'));
+      return view('admincp.movie.form',compact('movie','category','genre','country','thuocloai'));
     }
 
     /**
@@ -112,7 +122,9 @@ class MovieController extends Controller
       $movie->status = $data['status'];
       $movie->phimhot = $data['phimhot'];
       $movie->category_id = $data['category_id'];
-      $movie->genre_id = $data['genre_id'];
+      foreach($data['gen'] as $key => $genDetail){
+        $movie->genre_id = $genDetail[0];
+      }
       $movie->country_id = $data['country_id'];
 
       $get_image = $request->file('image');
@@ -130,6 +142,7 @@ class MovieController extends Controller
       }
 
       $movie->save();
+      $movie->thuocnhieutheloai()->sync($data['gen']);
       return redirect()->back();
     }
 
