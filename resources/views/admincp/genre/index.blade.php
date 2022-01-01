@@ -15,6 +15,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         <th scope="col">Slug</th>
+                        <th scope="col">Tag color</th>
 
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
@@ -27,6 +28,7 @@
                         <td>{{$gen['title']}}</td>
                         <td>{{$gen['description']}}</td>
                         <td>{{$gen['slug']}}</td>
+                        <td><span class="label {{$gen['tagColor']}}" style="width: 30px; height: 30px;display:block"></span></td>
 
                         <td>
                            @if($gen['status'])

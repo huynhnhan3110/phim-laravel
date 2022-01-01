@@ -42,6 +42,7 @@ class GenreController extends Controller
         $genre->description = $data['description'];
         $genre->slug = $data['slug'];
         $genre->status = $data['status'];
+        $genre->tagColor = $data['tagColor'];
 
         $genre->save();
 
@@ -87,6 +88,7 @@ class GenreController extends Controller
         $genre->description = $data['description'];
         $genre->slug = $data['slug'];
         $genre->status = $data['status'];
+        $genre->tagColor = $data['tagColor'];
 
         $genre->save();
 

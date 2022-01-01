@@ -43,7 +43,7 @@
                                  <li class="list-info-group-item"><span>Danh mục</span> : <a href="{{route('category',$movie->category->slug)}}" rel="category tag">{{$movie->category->title}}</a></li>
                                  <li class="list-info-group-item"><span>Thể loại</span> : 
                                     @foreach($movie->thuocnhieutheloai as $key => $glist)
-                                      <a href="{{route('genre',$glist->slug)}}" rel="category tag"><span class="badge">{{$glist->title}} |</span></a>
+                                      <a href="{{route('genre',$glist->slug)}}" rel="category tag"><span class="label {{$glist->tagColor}}">{{$glist->title}}</span></a> 
                                     @endforeach
                                  </li>
                                  <li class="list-info-group-item"><span>Quốc gia</span> : <a href="{{route('country',$movie->country->slug)}}" rel="tag">{{$movie->country->title}}</a></li>

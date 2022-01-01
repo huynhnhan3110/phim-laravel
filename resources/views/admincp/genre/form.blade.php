@@ -36,6 +36,10 @@
                   {!! Form::textarea('description',isset($genre) ? $genre->description : null, ['style'=>'resize:none','placeholder' => 'Nhập nội dung','class' => 'form-control','id' => 'description']) !!}
                </div>
                <div class="form-group">
+                  {!! Form::label('textColor', 'Tag Color',[]) !!}
+                  {!!  Form::select('tagColor', ['label-default' => 'Mặc định', 'label-primary' => 'Tím','label-success'=>'Cam', 'label-info'=>'Xanh nhạt','label-warning'=>'Xanh lá','label-danger'=>'Đỏ'], isset($genre) ? $genre->tagColor : null, ['class'=>'form-control']) !!}
+               </div>
+               <div class="form-group">
                   {!! Form::label('textStatus', 'Status',[]) !!}
                   {!!  Form::select('status', ['1' => 'Hiện', '0' => 'Ẩn'], isset($genre) ? $genre->status : null, ['placeholder' => 'Chọn trạng thái...','class'=>'form-control']) !!}
                </div>
